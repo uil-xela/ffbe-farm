@@ -7,13 +7,13 @@ regAuto = Region(0, 1183, 200, 97)
 
 function checkConnection()
     local reg = Region(50, 445, 703, 434)
-	while true do
-		if reg:exists(Pattern("connection_error.png"):similar(similarValue), 2) then
-			reg:existsClick(Pattern("ok.png"):similar(similarValue), 2)
-		else
-			break
-		end
-	end
+    while true do
+        if reg:exists(Pattern("connection_error.png"):similar(similarValue), 2) then
+            reg:existsClick(Pattern("ok.png"):similar(similarValue), 2)
+        else
+            break
+        end
+    end
 end
 
 function checkCrash()
@@ -32,26 +32,26 @@ function checkCrash()
 end
 
 function battle()
-	-- Choose the first companion
-	if exists(Pattern("select_companion.png"):similar(similarValue), 5) then
-		click(Location(385, 485))
-	end
+    -- Choose the first companion
+    if exists(Pattern("select_companion.png"):similar(similarValue), 5) then
+        click(Location(385, 485))
+    end
 
-	-- Click Start
-	if exists(Pattern("depart.png"):similar(similarValue), waitingTime) then
-		existsClick(Pattern("depart.png"):similar(similarValue), waitingTime)
-	end
+    -- Click Start
+    if exists(Pattern("depart.png"):similar(similarValue), waitingTime) then
+        existsClick(Pattern("depart.png"):similar(similarValue), waitingTime)
+    end
 
     local count = 0
-	-- Click Auto after battle started
-	while true do
-		if regAuto:exists(Pattern("auto.png"):similar(similarValue), waitingTime) then
-			click(regAuto:getLastMatch())
-			break
-		end
-        
+    -- Click Auto after battle started
+    while true do
+        if regAuto:exists(Pattern("auto.png"):similar(similarValue), waitingTime) then
+	    click(regAuto:getLastMatch())
+            break
+        end
+    
         count = count + 1
-        
+      
         if count >= 20 then
             checkConnection()
             if checkCrash() then
@@ -59,20 +59,23 @@ function battle()
                 return
             end
         end
-	end
+    end
 
     count = 0
-	-- Wait until battle ended
-	while true do
+    -- Wait until battle ended
+    while true do
+        if regAuto:exists(Pattern("auto.png"):similar(similarValue), 1) then
+            click(regAuto:getLastMatch())
+        end
         checkConnection()
-		if exists(Pattern("rank_up.png"):similar(similarValue), waitingTime) then
-			click(Location(375, 275))
-			click(Location(375, 275))
-		end
-		if exists(Pattern("next.png"):similar(similarValue), waitingTime) then
-			existsClick(Pattern("next.png"):similar(similarValue), 1)
-			break
-		end
+	if exists(Pattern("rank_up.png"):similar(similarValue), waitingTime) then
+            click(Location(375, 275))
+            click(Location(375, 275))
+        end
+        if exists(Pattern("next.png"):similar(similarValue), waitingTime) then
+            existsClick(Pattern("next.png"):similar(similarValue), 1)
+	    break
+        end
         
         count = count + 1
         
@@ -83,26 +86,26 @@ function battle()
                 return
             end
         end
-	end
+    end
 
-	-- Click once to proceed
-	if exists(Pattern("results.png"):similar(similarValue), waitingTime) then
-		click(Location(375, 275))
-		sleep(0.5)
-		click(Location(375, 275))
-		sleep(0.5)
-		click(Location(375, 275))
-	end
+    -- Click once to proceed
+    if exists(Pattern("results.png"):similar(similarValue), waitingTime) then
+        click(Location(375, 275))
+        sleep(0.5)
+        click(Location(375, 275))
+        sleep(0.5)
+        click(Location(375, 275))
+    end
 	
     count = 0
-	-- Check items obtained
-	if exists(Pattern("results_items.png"):similar(similarValue), 5) then
-		click(Location(375, 275))
-		while true do
-			if exists(Pattern("next_1.png"):similar(similarValue), waitingTime) then
-				existsClick(Pattern("next_1.png"):similar(similarValue), waitingTime)
-				break
-			end
+    -- Check items obtained
+    if exists(Pattern("results_items.png"):similar(similarValue), 5) then
+        click(Location(375, 275))
+	while true do
+	    if exists(Pattern("next_1.png"):similar(similarValue), waitingTime) then
+                existsClick(Pattern("next_1.png"):similar(similarValue), waitingTime)
+                break
+	    end
 
             count = count + 1
         
@@ -113,20 +116,20 @@ function battle()
                     return
                 end
             end
-		end
 	end
+    end
 	
-	-- Check daily quest completed
-	if exists(Pattern("daily_quest_completed.png"):similar(similarValue), 2) then
-		existsClick(Pattern("close.png"):similar(similarValue), waitingTime)
-	end
+    -- Check daily quest completed
+    if exists(Pattern("daily_quest_completed.png"):similar(similarValue), 2) then
+        existsClick(Pattern("close.png"):similar(similarValue), waitingTime)
+    end
 	
-	-- Ignore friend request
-	if exists(Pattern("dont_request.png"):similar(similarValue), 2) then
-		existsClick(Pattern("dont_request.png"):similar(similarValue), waitingTime)
-	end
+    -- Ignore friend request
+    if exists(Pattern("dont_request.png"):similar(similarValue), 2) then
+        existsClick(Pattern("dont_request.png"):similar(similarValue), waitingTime)
+    end
 	
-	checkConnection()
+    checkConnection()
     
     count = 0
     while true do
@@ -155,25 +158,25 @@ existsClick(Pattern("earth_shrine.png"):similar(similarValue), waitingTime)
 
 -- Start Looping
 while true do
-	-- Enter Earth Shrine - Entrance
-	existsClick(Pattern("earth_shrine_entrance.png"):similar(similarValue), waitingTime)
+    -- Enter Earth Shrine - Entrance
+    existsClick(Pattern("earth_shrine_entrance.png"):similar(similarValue), waitingTime)
  
     -- Check if material capacity reached
     if exists(Pattern("capacity_reached.png"):similar(similarValue), 2) then
         scriptExit("背包滿了")
     end
  
-	-- Check if the energy is sufficient
-	if exists(Pattern("insufficient_energy.png"):similar(similarValue), 2) then
-		existsClick(Pattern("no.png"):similar(similarValue), waitingTime)
-		
-		-- wait for 1 energy recovery
-		sleep(150)
-	else
+    -- Check if the energy is sufficient
+    if exists(Pattern("insufficient_energy.png"):similar(similarValue), 2) then
+        existsClick(Pattern("no.png"):similar(similarValue), waitingTime)
+
+        -- wait for 1 energy recovery
+        sleep(150)
+    else
         existsClick(Pattern("next_2.png"):similar(similarValue), waitingTime)
         
-		battle()
-	end
+        battle()
+    end
     
     if (t:check() > 6900) then
         scriptExit("1小時55分，自動停止")
