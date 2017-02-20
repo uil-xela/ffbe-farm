@@ -3,6 +3,7 @@ Settings:setScriptDimension(true, 800)
 similarValue = 0.9
 waitingTime = 3 -- second
 t = 0
+regAuto = Region(0, 1183, 200, 97)
 
 function checkConnection()
     local reg = Region(50, 445, 703, 434)
@@ -44,8 +45,8 @@ function battle()
     local count = 0
 	-- Click Auto after battle started
 	while true do
-		if exists(Pattern("auto.png"):similar(similarValue), waitingTime) then
-			click(getLastMatch())
+		if regAuto:exists(Pattern("auto.png"):similar(similarValue), waitingTime) then
+			click(regAuto:getLastMatch())
 			break
 		end
         
