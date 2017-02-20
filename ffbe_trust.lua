@@ -32,8 +32,7 @@ end
 
 function battle()
 	-- Choose the first companion
-	if exists(Pattern("select_companion.png"):similar(similarValue), waitingTime) then
-                sleep(1)                
+	if exists(Pattern("select_companion.png"):similar(similarValue), 5) then
 		click(Location(385, 485))
 	end
 
