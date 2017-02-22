@@ -31,21 +31,26 @@ function checkCrash()
     end
 end
 
-function trophy()
-    src = {Location(69, 809), Location(69, 950), Location(69, 1100), Location(472, 809), Location(472, 950)}
-    dst = {Location(337, 809), Location(337, 950), Location(337, 1100), Location(751, 809), Location(751, 950)}
-    act = {Location(106, 939), Location(106, 939), Location(534, 939), Location(534, 939), Location(106, 939)}
+-- For the achievement of Item-Used
+function trophyItem()
+    local dst = {Location(69, 809), Location(69, 950), Location(69, 1100), Location(472, 809), Location(472, 950)}
+    local src = {Location(337, 809), Location(337, 950), Location(337, 1100), Location(751, 809), Location(751, 950)}
     for i, m in ipairs(src) do
         swipe(src[i], dst[i])
         sleep(0.5)
-        click(act[i])
+        -- choose the 1st item (should be Portion)
+        click(dst[1])
+        sleep(0.5)
+        -- apply on the 1st unit
+        click(dst[1])
         sleep(0.5)
     end
-    --click AUTO twice
+    -- Click AUTO twice
     click(Location(97,1234))
     sleep(0.5)
     click(Location(97,1234))
-    --wait until REPEAT is click-able, then click REPEAT
+    -- Wait until REPEAT is click-able, then click REPEAT
+    -- It will repeat until 10 portion is running out and then start normal attack
     while true do
         if exists(Pattern("repeat.png"):similar(similarValue), 1) then
             click(getLastMatch())
@@ -72,7 +77,7 @@ function battle()
     while true do
         if regAuto:exists(Pattern("auto.png"):similar(similarValue), waitingTime) then
             sleep(0.5)
-            trophy()
+            trophyItem()
             break
         end
     
