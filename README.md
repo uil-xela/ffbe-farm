@@ -13,5 +13,5 @@
 <ul>
   <li>This version is a customized version specifically for achievement rewards.</li>
   <li>It was written for Steal/Magic-Used achievements before; however, it is too specific to be applicable on different units and skills equipped.</li>
-  <li>The current version aims for Item-Used achievement. Please put "Portion" in the 1st slot of your items. Each battle will consume 10 portions so it is suggested to prepare hundreds of portions before running this script.</li>
+  <li>The current version aims for Item-Used achievement. Please put "Potion" in the 1st slot of your items. Each battle will consume 10 potions so it is suggested to prepare hundreds of potions before running this script.</li>
 </ul>

@@ -38,7 +38,7 @@ function trophyItem()
     for i, m in ipairs(src) do
         swipe(src[i], dst[i])
         sleep(0.5)
-        -- choose the 1st item (should be Portion)
+        -- choose the 1st item (should be Potion)
         click(dst[1])
         sleep(0.5)
         -- apply on the 1st unit
@@ -50,7 +50,7 @@ function trophyItem()
     sleep(0.5)
     click(Location(97,1234))
     -- Wait until REPEAT is click-able, then click REPEAT
-    -- It will repeat until 10 portion is running out and then start normal attack
+    -- It will repeat until 10 potions is running out and then start normal attack
     while true do
         if exists(Pattern("repeat.png"):similar(similarValue), 1) then
             click(getLastMatch())
