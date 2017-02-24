@@ -181,12 +181,6 @@ end
 
 t = Timer()
 
--- Enter World from the Main Menu
-existsClick(Pattern("world_icon.png"):similar(similarValue), waitingTime)
-
--- Enter Earth Shrine
-existsClick(Pattern("earth_shrine.png"):similar(similarValue), waitingTime)
-
 -- Start Looping
 while true do
     -- Enter Earth Shrine - Entrance
@@ -197,9 +191,10 @@ while true do
         scriptExit("背包滿了")
     end
  
+    local regTest = Region(93, 420, 621, 130)
     -- Check if the energy is sufficient
-    if exists(Pattern("insufficient_energy.png"):similar(similarValue), 2) then
-        existsClick(Pattern("no.png"):similar(similarValue), waitingTime)
+    if regTest:exists(Pattern("insufficient_energy.png"):similar(similarValue), 1) then
+        existsClick(Pattern("cancel_refill.png"):similar(similarValue), waitingTime)
 
         -- wait for 1 energy recovery
         sleep(150)
